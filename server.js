@@ -1,0 +1,21 @@
+"use strict";
+exports.__esModule = true;
+var express = require("express");
+var bodyparser = require("body-parser");
+var cors = require("cors");
+var allProducts_1 = require("./allProducts/allProducts");
+var addProduct_1 = require("./addProduct/addProduct");
+var updateProduct_1 = require("./updateProduct/updateProduct");
+var deleteProduct_1 = require("./deleteProduct/deleteProduct");
+var app = express();
+app.use(cors());
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use("/fetch", allProducts_1["default"]);
+app.use("/insert", addProduct_1["default"]);
+app.use("/update", updateProduct_1["default"]);
+app.use("/delete", deleteProduct_1["default"]);
+var port = process.env.PORT || 8080;
+app.listen(port, function () {
+    console.log("server started");
+});
